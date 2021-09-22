@@ -1,0 +1,32 @@
+html,
+body {
+    text-align: center;
+}
+
+#page-title {
+    margin-top: 50px;
+}
+
+.search {
+    margin-top: 20px;
+    background-color: purple;
+}
+
+.overlay {
+    margin-top: 50px;
+    background-color: blue;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.wrapper {
+    background-color: red;
+}
+
+.task-input {
+    background-color: yellow;
+}
+
+.task-button {
+    background-color: green;
+}
