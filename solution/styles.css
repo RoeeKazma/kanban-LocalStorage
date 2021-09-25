@@ -19,7 +19,7 @@ body {
     justify-content: space-evenly;
 }
 
-.wrapper {
+.section {
     background-color: red;
 }
 
@@ -27,6 +27,11 @@ body {
     background-color: yellow;
 }
 
+.task {
+    background-color: purple;
+}
+
 .task-button {
     background-color: green;
 }
+
