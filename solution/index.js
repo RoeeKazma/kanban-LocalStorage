@@ -1,9 +1,3 @@
-const tasksObj = { //object that contains the tasks
-    "todo": [],
-    "in-progress": [],
-    "done": []
-};
-
 //#region local storage stuff
 
 const body= document.getElementById("body");
@@ -123,7 +117,7 @@ function searchFilter() // This function works by searching everything with the 
         }
     }
 
-    if(search==="")
+    if(search === "")
     {
         for(let li of allTasks)
         {
