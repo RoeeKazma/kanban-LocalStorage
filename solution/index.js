@@ -4,7 +4,8 @@ const tasksObj = { //object that contains the tasks
     "done": []
 };
 
-   
+//#region local storage stuff
+
 const body= document.getElementById("body");
 let getLocal = () =>JSON.parse(window.localStorage.getItem('tasks') || 'false'); // Save Local Data
 if(!getLocal())
@@ -17,6 +18,9 @@ else
 }
 const saveToLocal = (data) => window.localStorage.setItem('tasks', JSON.stringify(data)); //saves new local data (got help from discord for this function)
 printData();
+
+//#endregion
+
 
 function addTask({target}) //Adds a List element to the existing ul
 {
@@ -32,7 +36,7 @@ function addTask({target}) //Adds a List element to the existing ul
             newTask.classList.add("task");
             const ul = section.querySelector("ul");
             ul.prepend(newTask); 
-            // SaveData(target.id, newTask.textContent); //saves local data
+            SaveData(target.id, newTask.textContent); //saves local data
         }
         else
         {
@@ -83,6 +87,29 @@ function printData() //Adds all the List elements to the DOM
     }
 }
 
+function SaveData(id,liValue)
+{
+    let savedData = getLocal;    
+
+        switch (id) {
+
+            case 'submit-add-to-do':
+                savedData['todo'].unshift(liValue);
+                break;
+
+            case 'submit-add-in-progress':
+                savedData['in-progress'].unshift(liValue);
+                break;
+
+            case 'submit-add-done':
+                savedData['done'].unshift(liValue);
+                break;
+
+        }
+
+     saveToLocal(savedData);
+}
+
 function searchFilter() // This function works by searching everything with the class of "task" if its includes the text in the searchbar, if it doesnt it removes it from the ul and print all the other ones
 {
     const search = document.getElementById("search").value.toLowerCase(); 
@@ -104,17 +131,21 @@ function searchFilter() // This function works by searching everything with the 
             li.remove();
         }
         printData();
-    }
+    } 
 }
+
+
+
+//#region  event listeners
+body.addEventListener("click",(e)=>addTask(e)); //add task button
+
+const searchbar = document.getElementById("search");
+searchbar.addEventListener("keyup", (e)=>searchFilter()) // every key press it starts the search function
+
+
+//#endregion
 
 function clearTasksFromLocal () {
     localStorage.clear();
 }
 // clearTasksFromLocal();
-
-
-body.addEventListener("click",(e)=>addTask(e)); //add task button
-
-const searchbar = document.getElementById("search");
-searchbar.addEventListener("keyup", (e)=>searchFilter()) //
-
