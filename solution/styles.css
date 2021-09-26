@@ -45,7 +45,7 @@ body {
 	transition: background 0.15s, height 0.15s;
 }
 
-.edited-task {
+.last-edited-task {
     color: chartreuse;
     background-color: chocolate;
 }
@@ -53,3 +53,4 @@ body {
 ul {
     list-style: none;
 }
+

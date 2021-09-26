@@ -16,7 +16,7 @@ else
 {
     getLocal= getLocal(); // Makes sure its an object
 }
-const saveToLocal = (data) => window.localStorage.setItem('tasks', JSON.stringify(data)); //saves new local data (got help from discord for this function)
+const saveToLocal = (data) => window.localStorage.setItem('tasks', JSON.stringify(data)); //saves new local data (got help from discord for this)
 printData();
 
 //#endregion
@@ -87,22 +87,22 @@ function printData() //Adds all the List elements to the DOM
     }
 }
 
-function SaveData(id,liValue)
+function SaveData(id, listValue)
 {
     let savedData = getLocal;    
 
         switch (id) {
 
             case 'submit-add-to-do':
-                savedData['todo'].unshift(liValue);
+                savedData['todo'].unshift(listValue);
                 break;
 
             case 'submit-add-in-progress':
-                savedData['in-progress'].unshift(liValue);
+                savedData['in-progress'].unshift(listValue);
                 break;
 
             case 'submit-add-done':
-                savedData['done'].unshift(liValue);
+                savedData['done'].unshift(listValue);
                 break;
 
         }
@@ -138,26 +138,24 @@ function editTask (e) {
     if (e.target.className === "task")
     {
          //#region CSS classes
-    const sections= document.querySelectorAll("section");
-    for (let section of sections)
-    {
-        const ul= section.querySelector("ul");
-        const li = ul.querySelectorAll("li");
-        for(let i of li)
+        const sections= document.querySelectorAll("section");
+        for (let section of sections)
         {
-            i.classList.remove("edited-task")
+            const ul= section.querySelector("ul");
+            const li = ul.querySelectorAll("li");
+            for(let i of li)
+            {
+                i.classList.remove("last-edited-task")
+            }
         }
-    }
-    e.target.classList.add("edited-task");
+    e.target.classList.add("last-edited-task");
 
     //#endregion
         
-        const currentTask = e.target;
-        const list = currentTask;
-        const oldText = list.textContent;
+        const list = e.target;
+        const mouseEvent= e;
         const input = document.createElement("input");
-        
-        input.placeholder = oldText;
+        input.placeholder = list.textContent;
         input.classList.add("task");
         input.focus(); 
         list.replaceWith(input)
@@ -169,27 +167,83 @@ function editTask (e) {
             else 
             {
                 list.textContent = input.value;
-                input.replaceWith(list);
+                input.replaceWith(list); // replaces the list with the new value
                 const section = list.closest("section");
                 const buttonId = section.querySelector("button").id;
+                const index = keyOfTask(mouseEvent);
+                deleteTask(index, list.textContent)
                 SaveData(buttonId, list.textContent);
             }
         }
     }
 }
 
+function moveTask (e) {
+    if (e.target.className === "task")
+    {
+        
+
+
+    }
+}
+
 //#region  event listeners
-body.addEventListener("click",(e)=>addTask(e)); //add task button
+body.addEventListener("click",(e)=>addTask(e));
 
 const searchbar = document.getElementById("search");
 searchbar.addEventListener("keyup", (e)=>searchFilter()) // every key press it starts the search function
 
 body.addEventListener("dblclick",(e)=>editTask(e));
 
-
+body.addEventListener("mouseover", (e)=>moveTask(e));
 
 //#endregion
+
+
+//#region Assist Functions
 
 function clearTasksFromLocal () {
     localStorage.clear();
 }
+
+function duplicateTask (list)
+{
+    const listText = target.textContent;
+    const newTask = document.createElement("li");
+    newTask.textContent = listText;
+    newTask.classList.add("task");
+    return newTask;
+}
+
+function deleteTask (index, value)
+{
+    let newArr = getLocal;
+    const valueIndex = newArr[index].indexOf(value);
+    newArr[index].splice(valueIndex, 1);
+    saveToLocal(newArr);
+}
+
+function keyOfTask (e) {
+    {
+        const item = e.target;
+        const closeSection = item.closest("section");
+        const titleText = closeSection.querySelector("h2").textContent;
+
+        if(titleText.includes("1. To Do"))
+        {
+            return "todo";
+        }
+
+        if(titleText.includes("2. In Progress"))
+        {
+            return "in-progress";
+        }
+
+        if(titleText.includes("3. Done"))
+        {
+            return "done";
+        }
+    }
+}
+
+//#endregion
