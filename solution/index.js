@@ -134,7 +134,49 @@ function searchFilter() // This function works by searching everything with the 
     } 
 }
 
+function editTask (e) {
+    if (e.target.className === "task")
+    {
+         //#region CSS classes
+    const sections= document.querySelectorAll("section");
+    for (let section of sections)
+    {
+        const ul= section.querySelector("ul");
+        const li = ul.querySelectorAll("li");
+        for(let i of li)
+        {
+            i.classList.remove("edited-task")
+        }
+    }
+    e.target.classList.add("edited-task");
 
+    //#endregion
+        
+        const currentTask = e.target;
+        const list = currentTask;
+        const oldText = list.textContent;
+        const input = document.createElement("input");
+        
+        input.placeholder = oldText;
+        input.classList.add("task");
+        input.focus(); 
+        list.replaceWith(input)
+        input.onblur= (e)=> {
+            if (input.value === "")
+            {
+                alert("Please enter text")
+            }
+            else 
+            {
+                list.textContent = input.value;
+                input.replaceWith(list);
+                const section = list.closest("section");
+                const buttonId = section.querySelector("button").id;
+                SaveData(buttonId, list.textContent);
+            }
+        }
+    }
+}
 
 //#region  event listeners
 body.addEventListener("click",(e)=>addTask(e)); //add task button
@@ -142,10 +184,12 @@ body.addEventListener("click",(e)=>addTask(e)); //add task button
 const searchbar = document.getElementById("search");
 searchbar.addEventListener("keyup", (e)=>searchFilter()) // every key press it starts the search function
 
+body.addEventListener("dblclick",(e)=>editTask(e));
+
+
 
 //#endregion
 
 function clearTasksFromLocal () {
     localStorage.clear();
 }
-// clearTasksFromLocal();

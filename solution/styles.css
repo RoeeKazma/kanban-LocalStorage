@@ -24,6 +24,7 @@ body {
 
 .section {
     background-color: red;
+    width: 150%;
 }
 
 .task-input {
@@ -32,6 +33,7 @@ body {
 
 .task {
     background-color: purple;
+    margin: 20px;
 }
 
 .task-button {
@@ -43,3 +45,11 @@ body {
 	transition: background 0.15s, height 0.15s;
 }
 
+.edited-task {
+    color: chartreuse;
+    background-color: chocolate;
+}
+
+ul {
+    list-style: none;
+}
