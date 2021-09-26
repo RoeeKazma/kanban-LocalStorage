@@ -9,14 +9,17 @@ body {
 
 .search {
     margin-top: 20px;
+    margin-bottom: 20px;
     background-color: purple;
 }
 
 .overlay {
-    margin-top: 50px;
-    background-color: blue;
     display: flex;
     justify-content: space-evenly;
+	padding: 30px;
+	background: #009578;
+	border-radius: 5px;
+    
 }
 
 .section {
@@ -33,5 +36,10 @@ body {
 
 .task-button {
     background-color: green;
+}
+
+.drop-zone {
+    height: 10px;
+	transition: background 0.15s, height 0.15s;
 }
 
