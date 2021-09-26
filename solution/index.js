@@ -93,6 +93,8 @@ function SaveData(id, listValue)
 
         switch (id) {
 
+            
+
             case 'submit-add-to-do':
                 savedData['todo'].unshift(listValue);
                 break;
@@ -179,11 +181,53 @@ function editTask (e) {
 }
 
 function moveTask (e) {
-    if (e.target.className === "task")
+    if (e.target.className === "task" || e.target.className === "last-edited-task")
     {
-        
+        console.log("hover");
+        let keyPressed = {};
+        let mouseEvent = e;
+        document.onkeydown = (key) => 
+        {
+            keyPressed[key.key] = true;
 
+            {
 
+                if(keyPressed["Alt"] && key.key === "1")
+                {
+                    const ul = document.querySelector(".to-do-tasks");
+                    const newList = duplicateTask(mouseEvent)
+                    ul.prepend(newList);
+                    SaveData("submit-add-to-do", newList.textContent);
+                    const key = keyOfTask(mouseEvent);
+                    deleteTask(key, newList.textContent)
+                    mouseEvent.target.remove();
+                }
+
+                if(keyPressed["Alt"] && key.key ==="2")
+                {
+                    const ul = document.querySelector(".in-progress-tasks");
+                    const newList = duplicateTask(mouseEvent)
+                    ul.prepend(newList);
+                    SaveData("submit-add-in-progress", newList.textContent);
+                    const key = keyOfTask(mouseEvent);
+                    deleteTask(key, newList.textContent)
+                    mouseEvent.target.remove();
+                }
+
+                if(keyPressed["Alt"] && key.key ==="3")
+                {
+                    const ul = document.querySelector(".done-tasks");
+                    const newList = duplicateTask(mouseEvent)
+                    ul.prepend(newList);
+                    SaveData("submit-add-done", newList.textContent);
+                    const key = keyOfTask(mouseEvent);
+                    deleteTask(key, newList.textContent)
+                    mouseEvent.target.remove();
+                }
+
+            }
+            
+        } 
     }
 }
 
@@ -206,11 +250,11 @@ function clearTasksFromLocal () {
     localStorage.clear();
 }
 
-function duplicateTask (list)
+function duplicateTask({target}) //take existing li items content and creates new li item
 {
-    const listText = target.textContent;
+    const listContent= target.textContent;
     const newTask = document.createElement("li");
-    newTask.textContent = listText;
+    newTask.textContent = listContent;
     newTask.classList.add("task");
     return newTask;
 }
