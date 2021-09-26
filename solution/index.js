@@ -15,7 +15,7 @@ else
 {
     getLocal= getLocal(); // Makes sure its an object
 }
-const saveToLocal = (data) => window.localStorage.setItem('tasks', JSON.stringify(data)); //saves new local data
+const saveToLocal = (data) => window.localStorage.setItem('tasks', JSON.stringify(data)); //saves new local data (got help from discord for this function)
 printData();
 
 function addTask({target}) //Adds a List element to the existing ul
@@ -106,6 +106,11 @@ function searchFilter() // This function works by searching everything with the 
         printData();
     }
 }
+
+function clearTasksFromLocal () {
+    localStorage.clear();
+}
+// clearTasksFromLocal();
 
 
 body.addEventListener("click",(e)=>addTask(e)); //add task button
