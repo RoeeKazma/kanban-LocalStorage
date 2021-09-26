@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./index.js" defer></script>
     <!-- external sorting JS Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"></script>
     <link rel="stylesheet" href="./styles.css" />
     <title>Roee Kazma Tasks Manager</title>
 </head>
@@ -24,7 +24,6 @@
             <ul class="to-do-tasks"></ul>
             <input id="add-to-do-task" class="task-input" placeholder="Add Task">
             <button id="submit-add-to-do" class="task-button">Add</button>
-            <div class="drop-zone"></div>
         </section>
         </div>
         
@@ -53,5 +52,24 @@
         <button id="saveToApi">Save</button>
         <button id="loadFromApi">Load</button>
     </div>
+
+    <script>
+        const dragtodo = document.querySelector(".to-do-tasks");
+        new Sortable(dragtodo, {
+            group:"shared",
+            animation: 100
+        });
+        const draginProgress = document.querySelector(".in-progress-tasks");
+        new Sortable(draginProgress, {
+            group:"shared",
+            animation: 100
+        });
+        const dragdone = document.querySelector(".done-tasks");
+        new Sortable(dragdone, {
+            group:"shared",
+            animation: 100
+        });
+        
+      </script>
 </body>
 </html>

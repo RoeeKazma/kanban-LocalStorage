@@ -173,7 +173,6 @@ function editTask (e) { // focuses on the task that you double click, make an in
 function moveTask (e) { // makes an object with all the currently pressed keyboard keys and checks if the right keys are pressed the the same time, if they do it takes the same task (duplicate task) put it in the selected section and then removes it from the previus section and saves to local data
     if (e.target.className === "task" || e.target.className === "last-edited-task")
     {
-        console.log("hover");
         let keyPressed = {};
         let mouseEvent = e;
         document.onkeydown = (key) => 
@@ -221,6 +220,14 @@ function moveTask (e) { // makes an object with all the currently pressed keyboa
     }
 }
 
+function dragTask (e) {
+    if (e.target.className === "task" || e.target.className === "last-edited-task") 
+    {
+    console.log("asdasd");
+    
+    }
+}
+
 //#region  event listeners
 body.addEventListener("click",(e)=>addTask(e));
 
@@ -230,6 +237,8 @@ searchbar.addEventListener("keyup", (e)=>searchFilter()) // every key press it s
 body.addEventListener("dblclick",(e)=>editTask(e));
 
 body.addEventListener("mouseover", (e)=>moveTask(e));
+
+body.addEventListener("dragstart", (e)=> dragTask(e))
 
 //#endregion
 

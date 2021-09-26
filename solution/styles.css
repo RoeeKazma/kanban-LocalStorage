@@ -1,9 +1,10 @@
 html,
 body {
     text-align: center;
+    background-color: #d6d6d6;
 }
 
-#page-title {
+h1 {
     margin-top: 50px;
 }
 
@@ -38,11 +39,6 @@ body {
 
 .task-button {
     background-color: green;
-}
-
-.drop-zone {
-    height: 10px;
-	transition: background 0.15s, height 0.15s;
 }
 
 .last-edited-task {
