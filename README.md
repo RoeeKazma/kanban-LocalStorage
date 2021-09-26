@@ -12,14 +12,16 @@ This is the final task i was given as part of the cyber4s course.
 
 1.2 a "In Proggres" section
 
-1.3 a "Done" section.
+1.3 S "Done" section.
 
-2. the user can add tasks and move them from each section as he finishes it.
+2. The user can add tasks and move them from each section as he finishes it.
 
-3. the user can use the search bar to find the spesific task he wanted
+3. The user can use the search bar to find the spesific task he wanted
 
 ## Bonuses
 
-1. there is a button to delete all of the current tasks
+1. There is a button to delete all of the current tasks
 
-2. i used an external library called "Sortable" to drag and drop the tasks from one section to another, my friend recommended it to me and it workes great and its easy to use.
+2. I used an external library called "Sortable" to drag and drop the tasks from one section to another, my friend recommended it to me and it workes great and its easy to use.
+
+3. Added the site to GithHub Pages - https://roeekazma.github.io/kanban-final/solution/
