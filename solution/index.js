@@ -87,13 +87,10 @@ function printData() //Adds all the List elements to the DOM
     }
 }
 
-function SaveData(id, listValue)
-{
+function SaveData(id, listValue) {  // puts all the tasks in a "mock" array that has the list text and section name in it and send it to savelocal data function.
     let savedData = getLocal;    
 
         switch (id) {
-
-            
 
             case 'submit-add-to-do':
                 savedData['todo'].unshift(listValue);
@@ -136,51 +133,44 @@ function searchFilter() // This function works by searching everything with the 
     } 
 }
 
-function editTask (e) {
-    if (e.target.className === "task")
-    {
-         //#region CSS classes
-        const sections= document.querySelectorAll("section");
-        for (let section of sections)
-        {
-            const ul= section.querySelector("ul");
-            const li = ul.querySelectorAll("li");
-            for(let i of li)
-            {
-                i.classList.remove("last-edited-task")
-            }
-        }
-    e.target.classList.add("last-edited-task");
+function editTask (e) { // focuses on the task that you double click, make an input over it, make a new task and delete the changed task. also it adds a CSS class for the last task edited
+    const target = e.target;
+    const mouseEvent = e;
 
-    //#endregion
-        
-        const list = e.target;
-        const mouseEvent= e;
+    if (e.target.className === "task" || e.target.className === "last-edited-task")
+    {  
+        const li = target;
+        const oldText = li.textContent;
         const input = document.createElement("input");
-        input.placeholder = list.textContent;
+        input.placeholder = li.textContent;
         input.classList.add("task");
         input.focus(); 
-        list.replaceWith(input)
+        li.replaceWith(input)
         input.onblur= (e)=> {
+
             if (input.value === "")
             {
                 alert("Please enter text")
             }
+
             else 
             {
-                list.textContent = input.value;
-                input.replaceWith(list); // replaces the list with the new value
-                const section = list.closest("section");
+                li.textContent = input.value;
+                input.replaceWith(li); // replaces the list with the new value.
+                const section = li.closest("section");
                 const buttonId = section.querySelector("button").id;
                 const index = keyOfTask(mouseEvent);
-                deleteTask(index, list.textContent)
-                SaveData(buttonId, list.textContent);
+
+                SaveData(buttonId, li.textContent);
+                deleteTask(index, oldText);
+
             }
+            
         }
     }
 }
 
-function moveTask (e) {
+function moveTask (e) { // makes an object with all the currently pressed keyboard keys and checks if the right keys are pressed the the same time, if they do it takes the same task (duplicate task) put it in the selected section and then removes it from the previus section and saves to local data
     if (e.target.className === "task" || e.target.className === "last-edited-task")
     {
         console.log("hover");
@@ -259,7 +249,7 @@ function duplicateTask({target}) //take existing li items content and creates ne
     return newTask;
 }
 
-function deleteTask (index, value)
+function deleteTask (index, value) // gets all the local data and put it in an array just to use the "splice" function on it.
 {
     let newArr = getLocal;
     const valueIndex = newArr[index].indexOf(value);
@@ -267,7 +257,7 @@ function deleteTask (index, value)
     saveToLocal(newArr);
 }
 
-function keyOfTask (e) {
+function keyOfTask (e) { // returns in what section the event happend in
     {
         const item = e.target;
         const closeSection = item.closest("section");
