@@ -220,13 +220,6 @@ function moveTask (e) { // makes an object with all the currently pressed keyboa
     }
 }
 
-function dragTask (e) {
-    if (e.target.className === "task" || e.target.className === "last-edited-task") 
-    {
-    console.log("asdasd");
-    
-    }
-}
 
 //#region  event listeners
 body.addEventListener("click",(e)=>addTask(e));
@@ -238,7 +231,6 @@ body.addEventListener("dblclick",(e)=>editTask(e));
 
 body.addEventListener("mouseover", (e)=>moveTask(e));
 
-body.addEventListener("dragstart", (e)=> dragTask(e))
 
 //#endregion
 

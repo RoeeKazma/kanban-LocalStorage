@@ -47,29 +47,28 @@
 
     </div>
 
-    <div id="ApiButtons">
-        <h3>Save And Load</h3>
-        <button id="saveToApi">Save</button>
-        <button id="loadFromApi">Load</button>
-    </div>
-
     <script>
-        const dragtodo = document.querySelector(".to-do-tasks");
-        new Sortable(dragtodo, {
+        const dragTodo = document.querySelector(".to-do-tasks");
+        new Sortable(dragTodo, {
             group:"shared",
             animation: 100
         });
-        const draginProgress = document.querySelector(".in-progress-tasks");
-        new Sortable(draginProgress, {
+
+        const dragInProgress = document.querySelector(".in-progress-tasks");
+        new Sortable(dragInProgress, {
             group:"shared",
             animation: 100
         });
-        const dragdone = document.querySelector(".done-tasks");
-        new Sortable(dragdone, {
+
+        const dragDone = document.querySelector(".done-tasks");
+        new Sortable(dragDone, {
             group:"shared",
             animation: 100
         });
         
       </script>
+
+      
+
 </body>
 </html>
