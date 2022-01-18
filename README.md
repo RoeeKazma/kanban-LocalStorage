@@ -24,4 +24,4 @@ This is the final task i was given as part of the cyber4s course.
 
 2. I used an external library called "Sortable" to drag and drop the tasks from one section to another, my friend recommended it to me and it workes great and its easy to use.
 
-3. Added the site to GithHub Pages - https://roeekazma.github.io/kanban-final/solution/
+3. Added the site to GithHub Pages - https://roeekazma.github.io/kanban-LocalStorage/
