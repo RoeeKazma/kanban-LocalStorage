@@ -1,0 +1,88 @@
+html,
+body {
+    text-align: center;
+    background: linear-gradient(217deg, rgba(255, 50, 50, 0.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(100, 100, 255, 0.8), rgba(0,0,255,0) 70.71%),
+            linear-gradient(336deg, rgba(255, 255, 255, 0.8), rgba(0,0,255,0) 70.71%);
+}
+
+h1 {
+    margin-top: 50px;
+    font-style: italic;
+    font-size: 50px;
+}
+
+
+.search {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border-color: #009578;
+}
+
+.overlay {
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 50px;
+    margin-left: 50px;
+	padding: 30px;
+	background: #52525263;   
+}
+
+.section {
+    background-color: #0000004b;
+    padding: 20px; 
+}
+
+.to-do-tasks .task{
+    background-color: #a32222;
+    padding: 5px;
+}
+
+.in-progress-tasks .task{
+background-color: #e2c027;
+}
+
+.done-tasks .task{
+    background-color: #22a342;
+}
+
+.task-input {
+    background-color: yellow;
+    margin-top: 20px;
+    border-radius: 20px;
+    border-color: #009578;
+    background-color: #ffffff;
+    padding: 5px;
+}
+
+.task {
+    background-color: purple;
+    margin: 20px;
+    font-size: 20px;
+}
+
+
+.task-button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border-color: #009578;
+    background-color: #ffffff;
+}
+
+.last-edited-task {
+    color: chartreuse;
+    background-color: chocolate;
+}
+
+ul {
+    list-style: none;
+}
+
+.Clear {
+    border-radius: 20px;
+    border-color: #009578;
+    background-color: #ffffff;
+}
+
